@@ -4,6 +4,9 @@ import path from 'path';
 import { readFileSync } from 'fs';
 import { cac } from 'cac';
 
+import { buildCommands, ensureConfig } from './utils';
+import { commands } from './commands';
+
 const cli = cac('cp');
 
 cli.help();
@@ -13,4 +16,10 @@ cli.version(
     .version
 );
 
-cli.parse();
+async function bootstrap() {
+  await ensureConfig();
+  buildCommands(cli, commands);
+  cli.parse();
+}
+
+bootstrap();

@@ -5,7 +5,9 @@
   "author": "XLor",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
-  "bin": "dist/cli.js",
+  "bin": {
+    "cp": "dist/cli.js"
+  },
   "files": [
     "dist",
     "types",
@@ -13,7 +15,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "lint": "yarn prettier --parser typescript --write src/**/*.ts"
+    "lint": "yarn prettier --parser typescript --write src/**/*.ts",
+    "start": "node dist/index.js"
   },
   "lint-staged": {
     "*.ts": [
@@ -22,10 +25,12 @@
     ]
   },
   "dependencies": {
-    "cac": "^6.5.8"
+    "cac": "^6.5.8",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/node": "^13.13.4",
+    "@types/reflect-metadata": "^0.1.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
     "prettier": "^2.0.5",
