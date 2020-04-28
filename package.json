@@ -1,20 +1,34 @@
 {
   "name": "cp-tool",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "author": "XLor",
   "license": "MIT",
+  "author": "XLor",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "bin": "dist/cli.js",
+  "files": [
+    "dist",
+    "types",
+    "*"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "yarn prettier --parser typescript --write src/**/*.ts"
   },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --parser=typescript --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "cac": "^6.5.8"
+  },
   "devDependencies": {
+    "@types/node": "^13.13.4",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
     "prettier": "^2.0.5",
     "typescript": "^3.8.3"
-  },
-  "dependencies": {
-    "cac": "^6.5.8"
   }
 }
