@@ -10,7 +10,7 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "bin": {
-    "cp": "dist/cli.js"
+    "cpc": "dist/cli.js"
   },
   "files": [
     "dist",

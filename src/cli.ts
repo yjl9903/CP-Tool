@@ -7,7 +7,7 @@ import { cac } from 'cac';
 import { buildCommands, ensureConfig } from './utils';
 import { commands } from './commands';
 
-const cli = cac('cp');
+const cli = cac('cpc');
 
 cli.help();
 
