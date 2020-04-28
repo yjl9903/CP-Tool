@@ -1,0 +1,20 @@
+{
+  "name": "cp-tool",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "XLor",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "lint": "yarn prettier --parser typescript --write src/**/*.ts"
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "cac": "^6.5.8"
+  }
+}
