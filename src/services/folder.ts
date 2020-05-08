@@ -15,9 +15,15 @@ export async function createFile(name: string, template?: string) {
   }
 }
 
-export async function generateFolder(path: string, scheme: Scheme) {
+export async function generateFolder(
+  path: string,
+  scheme: Scheme,
+  subFolder?: string
+) {
   try {
-    const newPath = Path.join(getBase(), path);
+    const newPath = subFolder
+      ? Path.join(getBase(), subFolder, path)
+      : Path.join(getBase(), path);
     await mkdir(newPath);
     console.log(
       emoji.get('airplane') +
