@@ -19,20 +19,25 @@ export async function generateFolder(path: string, scheme: Scheme) {
   try {
     const newPath = Path.join(getBase(), path);
     await mkdir(newPath);
-    console.log(emoji.get('airplane') + '  ' + clc.green(`Create new folder => ${newPath}`));
+    console.log(
+      emoji.get('airplane') +
+        '  ' +
+        clc.green(`Create new folder => ${newPath}`)
+    );
     const tasks: Array<Promise<any>> = [];
-    const create = (scheme: Scheme) => {
+    const create = async (basePath: string, scheme: Scheme) => {
       for (const item of scheme) {
         if (typeof item === 'string') {
-          tasks.push(createFile(Path.join(newPath, item)));
+          tasks.push(createFile(Path.join(basePath, item)));
         } else if ('children' in item) {
-          create(item.children);
+          await mkdir(Path.join(basePath, item.name));
+          create(Path.join(basePath, item.name), item.children);
         } else {
-          tasks.push(createFile(Path.join(newPath, item.name), item.template));
+          tasks.push(createFile(Path.join(basePath, item.name), item.template));
         }
       }
     };
-    create(scheme);
+    create(newPath, scheme);
     await Promise.all(tasks);
   } catch (error) {
     if (error.code === 'EEXIST') {
