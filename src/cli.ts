@@ -4,8 +4,8 @@ import path from 'path';
 import { readFileSync } from 'fs';
 import { cac } from 'cac';
 
-import { buildCommands, ensureConfig } from './utils';
-import { commands } from './commands';
+import { buildCommands } from './utils';
+import { commands, ensureConfig } from './commands';
 
 const cli = cac('cpc');
 

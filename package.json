@@ -30,10 +30,16 @@
   },
   "dependencies": {
     "cac": "^6.5.8",
+    "cli-color": "^2.0.0",
+    "execa": "^4.0.0",
+    "node-emoji": "^1.10.0",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@types/cli-color": "^2.0.0",
+    "@types/execa": "^2.0.0",
     "@types/node": "^13.13.4",
+    "@types/node-emoji": "^1.8.1",
     "@types/reflect-metadata": "^0.1.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",

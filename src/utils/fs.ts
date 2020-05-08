@@ -35,3 +35,7 @@ export function writeFile(path: string, data: string): Promise<void> {
     });
   });
 }
+
+export function readDir(path: string) {
+  return fs.promises.readdir(path);
+}
