@@ -11,20 +11,25 @@ export const commands: Array<typeof AbstractCommand> = [
   loadCommand,
   listCodeCommand,
   settingsCommand,
-  createFolderCommand
+  createFolderCommand,
 ];
 
 export async function ensureConfig() {
   await mkdir(ConfigPath).catch(() => {});
   await mkdir(Path.join(ConfigPath, 'code')).catch(() => {});
   try {
-    const config = JSON.parse(await readFile(Path.join(ConfigPath, 'config.json')));
+    const config = JSON.parse(
+      await readFile(Path.join(ConfigPath, 'config.json'))
+    );
     setConfig(config);
   } catch (error) {
     if (error.code === 'ENOENT') {
       const { config } = await import('./default');
       setConfig(config);
-      await writeFile(Path.join(ConfigPath, 'config.json'), JSON.stringify(config, null, 2));
+      await writeFile(
+        Path.join(ConfigPath, 'config.json'),
+        JSON.stringify(config, null, 2)
+      );
     } else {
       process.exit(1);
     }

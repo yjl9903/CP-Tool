@@ -8,11 +8,7 @@ export const config: ConfigFile = {
   schemes: [
     {
       name: 'Codeforces',
-      scheme: [
-        'a.cpp',
-        'b.cpp',
-        'c.cpp',
-      ]
-    }
-  ]
+      scheme: ['a.cpp', 'b.cpp', 'c.cpp'],
+    },
+  ],
 };

@@ -1,4 +1,6 @@
 import Path from 'path';
+import clc from 'cli-color';
+import emoji from 'node-emoji';
 
 import { Scheme } from './type';
 import { mkdir, getErrorMessage, writeFile } from '../utils';
@@ -17,6 +19,7 @@ export async function generateFolder(path: string, scheme: Scheme) {
   try {
     const newPath = Path.join(getBase(), path);
     await mkdir(newPath);
+    console.log(emoji.get('airplane') + '  ' + clc.green(`Create new folder => ${newPath}`));
     const tasks: Array<Promise<any>> = [];
     const create = (scheme: Scheme) => {
       for (const item of scheme) {
