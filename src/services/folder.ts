@@ -4,7 +4,7 @@ import emoji from 'node-emoji';
 
 import { Scheme } from './type';
 import { mkdir, getErrorMessage, writeFile } from '../utils';
-import { getBase } from './index';
+import { getBase, getConfig } from './index';
 import { load } from './storage';
 
 export async function createFile(name: string, template?: string) {
@@ -15,20 +15,29 @@ export async function createFile(name: string, template?: string) {
   }
 }
 
+export function transformFolder(name: string, subFolder?: string) {
+  if (subFolder !== undefined) {
+    const alias = getConfig().folderAlias;
+    const subName =
+      alias !== undefined && alias[subFolder] !== undefined
+        ? alias[subFolder]
+        : subFolder;
+    return Path.join(getBase(), subName, name);
+  } else {
+    return Path.join(getBase(), name);
+  }
+}
+
 export async function generateFolder(
   path: string,
-  scheme: Scheme,
-  subFolder?: string
+  scheme: Scheme
 ) {
   try {
-    const newPath = subFolder
-      ? Path.join(getBase(), subFolder, path)
-      : Path.join(getBase(), path);
-    await mkdir(newPath);
+    await mkdir(path);
     console.log(
       emoji.get('airplane') +
         '  ' +
-        clc.green(`Create new folder => ${newPath}`)
+        clc.green(`Create new folder => ${path}`)
     );
     const tasks: Array<Promise<any>> = [];
     const create = async (basePath: string, scheme: Scheme) => {
@@ -43,7 +52,7 @@ export async function generateFolder(
         }
       }
     };
-    create(newPath, scheme);
+    create(path, scheme);
     await Promise.all(tasks);
   } catch (error) {
     if (error.code === 'EEXIST') {

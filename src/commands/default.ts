@@ -11,4 +11,7 @@ export const config: ConfigFile = {
       scheme: ['a.cpp', 'b.cpp', 'c.cpp'],
     },
   ],
+  folderAlias: {
+    cf: 'codeforces',
+  },
 };

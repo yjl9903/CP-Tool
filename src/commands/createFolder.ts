@@ -1,12 +1,13 @@
 import { command, AbstractCommand, option } from '../utils';
-import { generateFolder } from '../services/folder';
-import { getScheme } from '../services';
+import { getScheme, runCode, generateFolder, transformFolder } from '../services';
 
-@command('create <name>', 'open settings file')
+@command('create <name>', 'create contest folder')
 @option('-f, --folder <folderName>', 'create in sub folder')
 @option('-s, --scheme <schemeName>', 'choose scheme template')
 export class createFolderCommand extends AbstractCommand {
   async action(name: string, option: { scheme?: string; folder?: string }) {
-    generateFolder(name, getScheme(option.scheme), option.folder);
+    const path = transformFolder(name, option.folder);
+    await generateFolder(path, getScheme(option.scheme));
+    await runCode(path);
   }
 }

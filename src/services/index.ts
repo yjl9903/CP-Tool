@@ -5,6 +5,8 @@ import * as Storage from './storage';
 import { ConfigFile, Scheme } from './type';
 import { getErrorMessage } from '../utils';
 
+export * from './code';
+export * from './folder';
 export { Storage };
 
 let Config: ConfigFile;

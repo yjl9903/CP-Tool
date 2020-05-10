@@ -5,13 +5,15 @@ import { setConfig, ConfigPath } from '../services';
 import { storeCommand, loadCommand, listCodeCommand } from './storage';
 import { settingsCommand } from './settings';
 import { createFolderCommand } from './createFolder';
+import { openFolderCommand } from './openFolder';
 
 export const commands: Array<typeof AbstractCommand> = [
+  createFolderCommand,
+  openFolderCommand,
   storeCommand,
   loadCommand,
   listCodeCommand,
   settingsCommand,
-  createFolderCommand,
 ];
 
 export async function ensureConfig() {
